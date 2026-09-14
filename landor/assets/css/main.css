@@ -3424,11 +3424,12 @@ body.tp-magic-cursor #magic-cursor {
   }
 }
 .tp-footer-margin {
-  margin: 0 30px 30px 30px;
+  margin: 0 30px 0 30px;
+  border-radius: 20px 20px 0 0;
 }
 @media only screen and (min-width: 1700px) and (max-width: 1800.98px), only screen and (min-width: 1600px) and (max-width: 1700.98px) {
   .tp-footer-margin {
-    margin: 0 20px 20px 20px;
+    margin: 0 20px 0 20px;
   }
 }
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px), only screen and (min-width: 768px) and (max-width: 991.98px), only screen and (min-width: 992px) and (max-width: 1199.98px), only screen and (min-width: 1200px) and (max-width: 1399.98px), only screen and (min-width: 1400px) and (max-width: 1599.98px) {
@@ -3440,6 +3441,56 @@ body.tp-magic-cursor #magic-cursor {
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px) {
   .tp-footer-margin {
     border-radius: 0;
+  }
+}
+.tp-footer-big-text-wrap {
+  padding-top: 50px;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  line-height: 0.8;
+}
+.tp-footer-big-text-wrap .container-fluid {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  line-height: 0.8;
+}
+.footer-vastu-text {
+  font-size: clamp(40px, 12.8vw, 180px);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 auto 0 auto !important;
+  padding: 0 !important;
+  display: block;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  text-align: center;
+  /* Premium white metallic gradient */
+  background: linear-gradient(180deg, #FFFFFF 20%, rgba(255, 255, 255, 0.35) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform-origin: bottom center;
+  position: relative;
+  bottom: -0.03em;
+}
+@media (max-width: 767.98px) {
+  .tp-footer-big-text-wrap {
+    padding-top: 25px;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .footer-vastu-text {
+    bottom: -0.02em;
   }
 }
 .tp-footer-info-title {
@@ -9904,7 +9955,7 @@ body.tp-magic-cursor #magic-cursor {
   transition: 0.3s;
 }
 .tptesti__address::before {
-  display: inline-block;
+  display: none;
   content: "";
   width: 20px;
   height: 1px;
@@ -9986,36 +10037,65 @@ body.tp-magic-cursor #magic-cursor {
 }
 
 .tp-testi-card {
-  min-width: 1057px;
-  min-height: 600px;
+  width: 820px;
+  max-width: 90%;
+  min-height: auto;
   background-color: var(--tp-secoundery-color);
   display: flex;
-  padding: 100px 60px;
+  padding: 50px 45px;
   border-radius: 20px;
   position: absolute;
   right: 0;
-  bottom: -120px;
+  bottom: -90px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px), only screen and (min-width: 768px) and (max-width: 991.98px) {
   .tp-testi-card {
-    min-width: 100%;
-    min-height: 500px;
-    padding: 60px 50px;
+    width: 740px;
+    max-width: 90%;
+    min-height: auto;
+    padding: 40px 35px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .tp-testi-card {
-    padding: 40px 30px;
+    padding: 35px 30px;
   }
 }
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px) {
   .tp-testi-card {
     position: unset;
-    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
     flex-wrap: wrap;
-    padding: 40px 20px;
+    padding: 35px 20px;
     border-radius: 0;
   }
+}
+.tp-testi-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.tp-testi-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 50px;
+  font-size: 11.5px;
+  color: #121315;
+  line-height: 1.2;
+}
+.tp-testi-badge strong {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.tp-testi-badge span {
+  font-weight: 500;
+  opacity: 0.85;
 }
 .tp-testi-card-awards {
   display: flex;
@@ -10031,7 +10111,8 @@ body.tp-magic-cursor #magic-cursor {
   flex: 0 0 auto;
 }
 .tp-testi-card-content p {
-  line-height: 26px;
+  line-height: 24px;
+  font-size: 15px;
 }
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px) {
   .tp-testi-card-content p br {
@@ -10050,12 +10131,13 @@ body.tp-magic-cursor #magic-cursor {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 60px;
+  padding-right: 35px;
   border-right: 1px solid rgba(0, 0, 0, 0.15);
+  flex: 1 1 52%;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .tp-testi-card-left {
-    padding-right: 35px;
+    padding-right: 25px;
   }
 }
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px) {
@@ -10068,11 +10150,12 @@ body.tp-magic-cursor #magic-cursor {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 60px;
+  padding-left: 35px;
+  flex: 1 1 48%;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   .tp-testi-card-right {
-    padding-left: 35px;
+    padding-left: 25px;
   }
 }
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px) {
@@ -10080,46 +10163,51 @@ body.tp-magic-cursor #magic-cursor {
     padding-left: 0;
   }
 }
+.tp-testi-card-title {
+  font-size: 28px;
+  line-height: 1.25;
+}
 @media only screen and (min-width: 768px) and (max-width: 991.98px), only screen and (min-width: 576px) and (max-width: 767.98px), (max-width: 574.98px) {
   .tp-testi-card-title {
-    font-size: 25px;
+    font-size: 22px;
   }
 }
 .tp-testi-fact-num {
-  font-size: 140px;
-  letter-spacing: -0.06em;
-  line-height: 120px;
+  font-size: 64px;
+  letter-spacing: -0.04em;
+  line-height: 60px;
   margin-bottom: 0;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px), only screen and (min-width: 768px) and (max-width: 991.98px) {
   .tp-testi-fact-num {
-    font-size: 100px;
-    line-height: 80px;
+    font-size: 54px;
+    line-height: 52px;
   }
 }
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px) {
   .tp-testi-fact-num {
-    font-size: 80px;
-    line-height: 60px;
+    font-size: 46px;
+    line-height: 44px;
   }
 }
 .tp-testi-fact-num .odometer {
-  line-height: 103px;
+  line-height: 60px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px), only screen and (min-width: 768px) and (max-width: 991.98px) {
   .tp-testi-fact-num .odometer {
-    line-height: 80px;
+    line-height: 52px;
   }
 }
 @media (max-width: 574.98px), only screen and (min-width: 576px) and (max-width: 767.98px) {
   .tp-testi-fact-num .odometer {
-    line-height: 60px;
+    line-height: 44px;
   }
 }
 .tp-testi-fact p {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -13157,8 +13245,975 @@ body.tp-magic-cursor #magic-cursor {
   background-color: var(--tp-gray-color);
   border-color: transparent;
 }
-.tpcarjob:hover .tpcarjob__link a {
-  background-color: var(--tp-secoundery-color);
+/*-----------------------------------------------------------------------------------
+    SPECIAL GUESTS SECTION (VASTU VIHAR NEPAL EVENT - DUBAI)
+-----------------------------------------------------------------------------------*/
+.tp-special-guests-area {
+  background: radial-gradient(circle at 15% 20%, rgba(217, 216, 19, 0.09) 0%, transparent 45%),
+              radial-gradient(circle at 85% 80%, rgba(229, 192, 110, 0.07) 0%, transparent 45%),
+              linear-gradient(180deg, #07080a 0%, #0d0f14 50%, #07080a 100%);
+  position: relative;
+  overflow: hidden;
+  color: var(--tp-white-color);
+  padding-top: 60px;
+  padding-bottom: 80px;
+  scroll-margin-top: 100px;
+}
+#event-schedule {
+  scroll-margin-top: 100px;
+}
+
+.tp-special-guests-area::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(217, 216, 19, 0.4) 50%, transparent 100%);
+}
+
+.tp-special-guests-area::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(217, 216, 19, 0.3) 50%, transparent 100%);
+}
+
+/* Background Cultural & Skyline Accents */
+.tp-guest-bg-pattern {
+  position: absolute;
+  top: 40px;
+  right: 2%;
+  width: 480px;
+  height: 480px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tp-guest-skyline-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 140px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: repeat-x;
+  background-position: bottom center;
+}
+
+/* Section Header */
+.tp-guest-badge-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 99px;
+  background: rgba(217, 216, 19, 0.08);
+  border: 1px solid rgba(217, 216, 19, 0.28);
+  margin-bottom: 22px;
+}
+
+.tp-guest-badge-icon {
+  color: var(--tp-secoundery-color);
+  font-size: 11px;
+  animation: guestSparkle 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes guestSparkle {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+.tp-guest-badge-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--tp-secoundery-color);
+  text-transform: uppercase;
+}
+
+.tp-guest-section-tag {
+  font-family: var(--tp-theme-font);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.tp-guest-title {
+  font-family: var(--tp-playfair-font), serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--tp-white-color);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.tp-guest-title span {
+  background: linear-gradient(135deg, #fff2a3 0%, #d9d813 50%, #e2b85a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.tp-guest-subtitle-lead {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 14px;
+}
+
+.tp-guest-subtext {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Guest Cards Layout & Asymmetry */
+.tp-guest-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.tp-guest-card-wrapper-1 {
+  margin-top: 0;
+}
+
+@media (min-width: 992px) {
+  .tp-guest-card-wrapper-2 {
+    margin-top: 60px; /* Editorial Asymmetrical Drop */
+  }
+}
+
+.tp-guest-card {
+  background: linear-gradient(165deg, rgba(22, 24, 30, 0.88) 0%, rgba(12, 13, 17, 0.96) 100%);
+  border: 1px solid rgba(217, 216, 19, 0.16);
+  border-radius: 24px;
+  padding: 36px 36px 42px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tp-guest-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(217, 216, 19, 0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.tp-guest-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(217, 216, 19, 0.45);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.75), 0 0 40px rgba(217, 216, 19, 0.12);
+}
+
+.tp-guest-card:hover::before {
+  opacity: 1;
+}
+
+/* Card Header Meta */
+.tp-guest-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.tp-guest-location-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.75);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tp-guest-location-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tp-secoundery-color);
+  box-shadow: 0 0 8px var(--tp-secoundery-color);
+}
+
+.tp-guest-index {
+  font-family: var(--tp-playfair-font), serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(217, 216, 19, 0.4);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+/* Portrait Showcase */
+.tp-guest-thumb-box {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background: #0d0e12;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tp-guest-thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), filter 0.45s ease;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.tp-guest-card:hover .tp-guest-thumb-box img {
+  transform: scale(1.04);
+  filter: brightness(1.02) contrast(1.08);
+}
+
+.tp-guest-thumb-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(12, 13, 17, 0.95) 0%, rgba(12, 13, 17, 0.4) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Subtle Gold Corner Accents on Portrait */
+.tp-guest-corner-tl,
+.tp-guest-corner-br {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.tp-guest-corner-tl {
+  top: 14px;
+  left: 14px;
+  border-top: 2px solid rgba(217, 216, 19, 0.7);
+  border-left: 2px solid rgba(217, 216, 19, 0.7);
+}
+
+.tp-guest-corner-br {
+  bottom: 14px;
+  right: 14px;
+  border-bottom: 2px solid rgba(217, 216, 19, 0.7);
+  border-right: 2px solid rgba(217, 216, 19, 0.7);
+}
+
+.tp-guest-card:hover .tp-guest-corner-tl {
+  top: 10px;
+  left: 10px;
+  border-color: var(--tp-secoundery-color);
+}
+
+.tp-guest-card:hover .tp-guest-corner-br {
+  bottom: 10px;
+  right: 10px;
+  border-color: var(--tp-secoundery-color);
+}
+
+/* Card Content & Typography */
+.tp-guest-card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tp-guest-role {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--tp-secoundery-color);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.tp-guest-name {
+  font-family: var(--tp-playfair-font), serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--tp-white-color);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.tp-guest-bio {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 24px;
+}
+
+/* Event Connection Highlight Box */
+.tp-guest-event-box {
+  background: rgba(217, 216, 19, 0.05);
+  border-left: 2px solid var(--tp-secoundery-color);
+  padding: 14px 18px;
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tp-guest-event-icon {
+  color: var(--tp-secoundery-color);
+  font-size: 14px;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.tp-guest-event-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Premium Call To Action Button */
+.tp-guest-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(217, 216, 19, 0.35);
+  border-radius: 12px;
+  color: var(--tp-white-color);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.35s ease;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.tp-guest-cta-btn span:first-child {
+  transition: transform 0.3s ease;
+}
+
+.tp-guest-cta-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(217, 216, 19, 0.12);
+  color: var(--tp-secoundery-color);
+  font-size: 16px;
+  transition: all 0.35s ease;
+}
+
+.tp-guest-card:hover .tp-guest-cta-btn {
+  background: var(--tp-secoundery-color);
+  border-color: var(--tp-secoundery-color);
+  color: #000000;
+  box-shadow: 0 8px 25px rgba(217, 216, 19, 0.3);
+}
+
+.tp-guest-card:hover .tp-guest-cta-btn span:first-child {
+  transform: translateX(4px);
+}
+
+.tp-guest-card:hover .tp-guest-cta-arrow {
+  background: #000000;
+  color: var(--tp-secoundery-color);
+  transform: translateX(4px);
+}
+
+/* Responsive Styles */
+@media (max-width: 1199.98px) {
+  .tp-guest-thumb-box {
+    height: 420px;
+  }
+  .tp-guest-name {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .tp-special-guests-area {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .tp-guest-title {
+    font-size: 38px;
+  }
+  .tp-guest-thumb-box {
+    height: 400px;
+  }
+  .tp-guest-card {
+    padding: 28px 24px 32px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .tp-special-guests-area {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .tp-guest-title {
+    font-size: 30px;
+  }
+  .tp-guest-subtitle-lead {
+    font-size: 17px;
+  }
+  .tp-guest-thumb-box {
+    height: 350px;
+  }
+  .tp-guest-name {
+    font-size: 28px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
+
+
+/* ==========================================================================
+   Landor Native Rich Event Schedule ("The Complete Experience")
+   ========================================================================== */
+.tp-schedule-area {
+  position: relative;
+  background-color: #0b0d12;
+  padding-top: 130px;
+  padding-bottom: 120px;
+}
+
+.tp-schedule-area .tp-portfolio-back-text {
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.025);
+  font-size: clamp(80px, 12vw, 170px);
+  pointer-events: none;
+  z-index: 0;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.tp-schedule-heading {
+  position: relative;
+  z-index: 2;
+}
+
+.tp-schedule-filter-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 991.98px) {
+  .tp-schedule-filter-wrap {
+    justify-content: flex-start;
+    margin-top: 30px;
+  }
+}
+
+.tp-schedule-filters-box {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tp-schedule-tab-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tp-schedule-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tp-schedule-tab-btn.active {
+  background: var(--tp-secoundery-color);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(217, 216, 19, 0.3);
+}
+
+/* Landor Native Postbox Customization for Events */
+.tp-schedule-postbox {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 22px 22px 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
+  position: relative;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.tp-schedule-postbox:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(217, 216, 19, 0.35);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(217, 216, 19, 0.05);
+}
+
+.tp-schedule-postbox.featured-showcase {
+  border: 1px solid rgba(217, 216, 19, 0.45);
+  background: linear-gradient(155deg, rgba(217, 216, 19, 0.08) 0%, rgba(18, 20, 26, 0.95) 100%);
+  box-shadow: 0 12px 35px rgba(217, 216, 19, 0.08);
+}
+
+.tp-schedule-postbox.featured-celebrity {
+  border: 1px solid rgba(243, 202, 119, 0.5);
+  background: linear-gradient(155deg, rgba(212, 160, 70, 0.1) 0%, rgba(22, 20, 28, 0.95) 100%);
+  box-shadow: 0 12px 35px rgba(243, 202, 119, 0.1);
+}
+
+.tp-schedule-postbox .tppostbox__thumb {
+  height: 250px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  background-color: #1a1c22;
+}
+
+.tp-schedule-postbox .tppostbox__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.tp-schedule-postbox:hover .tppostbox__thumb img {
+  transform: scale(1.08);
+}
+
+/* Cutout Shape for Time Badge matching Landor */
+.tp-schedule-postbox .tppostbox__shape {
+  background-color: #0b0d12;
+  border-radius: 0 0 18px 0;
+  padding: 0 8px 8px 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.tp-schedule-postbox .tppostbox__shape::before {
+  border-top-left-radius: 18px;
+  bottom: -36px;
+  box-shadow: 0 -18px #0b0d12;
+  content: "";
+  height: 36px;
+  position: absolute;
+  left: 0;
+  width: 18px;
+  background: transparent;
+}
+
+.tp-schedule-postbox .tppostbox__shape::after {
+  border-top-right-radius: 18px;
+  bottom: 10px;
+  box-shadow: 0 -18px #0b0d12;
+  content: "";
+  height: 36px;
+  position: absolute;
+  right: -26px;
+  width: 18px;
+  transform: rotate(275deg);
+  background: transparent;
+}
+
+.tp-schedule-postbox .tppostbox__meta {
+  background: var(--tp-secoundery-color);
+  color: #000000;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 7px 16px;
+  border-radius: 30px;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Category Badge (Top-Right) */
+.tp-schedule-card-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
+}
+
+.tp-schedule-featured-ribbon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--tp-secoundery-color);
+  color: #000000;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(217, 216, 19, 0.4);
+  z-index: 2;
+}
+
+/* Hover Circle Arrow Button matching Landor Portfolio */
+.tp-schedule-postbox .tpportfolio__button {
+  bottom: 45%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
+  z-index: 3;
+}
+
+.tp-schedule-postbox .tpportfolio__button a {
+  height: 64px;
+  width: 64px;
+  background: var(--tp-secoundery-color);
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.tp-schedule-postbox:hover .tpportfolio__button {
+  opacity: 1;
+  visibility: visible;
+  bottom: 50%;
+}
+
+/* Text Content */
+.tp-schedule-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: 22px;
+}
+
+.tp-schedule-card-kicker {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tp-secoundery-color);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.tp-schedule-postbox .tppostbox__title {
+  font-size: 21px;
+  line-height: 1.35;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.tp-schedule-postbox .tppostbox__title a {
+  color: #ffffff;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.tp-schedule-postbox .tppostbox__title a:hover {
+  color: var(--tp-secoundery-color);
+}
+
+.tp-schedule-card-desc {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.68);
+  margin-bottom: 20px;
+}
+
+/* Activity Meta Badges */
+.tp-schedule-postbox .tp-services-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+  margin-top: auto;
+}
+
+.tp-schedule-postbox .tp-services-meta span {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 30px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.25s ease;
+}
+
+.tp-schedule-postbox .tp-services-meta span:hover {
+  background: var(--tp-secoundery-color);
+  color: #000000;
+  border-color: var(--tp-secoundery-color);
+}
+
+.tp-schedule-card-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tp-schedule-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--tp-secoundery-color);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.tp-schedule-action-link:hover {
+  color: #ffffff;
+  gap: 12px;
+}
+
+.tp-schedule-action-link svg {
+  transition: transform 0.3s ease;
+}
+
+.tp-schedule-action-link:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 991.98px) {
+  .tp-schedule-area {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+}
+
+/* Contact Google Map Card & Floating Info Overlay */
+.tp-contect-map-card {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  background: #111;
+}
+
+.tp-contect-map-card iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.tp-map-info-floating {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(18, 20, 24, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 26px 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 420px;
+  z-index: 5;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+
+.tp-map-country-badge {
+  display: inline-block;
+  background: rgba(230, 100, 28, 0.2);
+  color: #e6641c;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(230, 100, 28, 0.4);
+  margin-bottom: 10px;
+}
+
+.tp-map-info-floating .tp-contect-slider-title {
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.tp-map-addr-text {
+  margin-bottom: 6px;
+  color: #a0a5b1;
+  font-size: 14px;
+}
+
+.tp-map-time-text {
+  margin: 0;
+  color: #e6641c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tp-map-card-footer {
+  width: 100% !important;
+  padding: 14px 0 0 !important;
+  margin-top: 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-bottom: none !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.tp-map-card-footer a:first-child {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;
+  transition: color 0.3s ease;
+}
+
+.tp-map-card-footer a:first-child:hover {
+  color: #e6641c;
+}
+
+.tp-map-card-footer a:first-child::after {
+  display: none !important;
+}
+
+.tp-map-card-footer a:last-child {
+  color: #e6641c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.3s ease;
+}
+
+.tp-map-card-footer a:last-child:hover {
+  background: rgba(230, 100, 28, 0.25);
+}
+
+@media (max-width: 767.98px) {
+  .tp-contect-map-card {
+    height: 480px;
+  }
+  .tp-map-info-floating {
+    bottom: 15px;
+    right: 15px;
+    left: 15px;
+    max-width: none;
+    padding: 18px 20px;
+  }
+}
+
+/* Footer Top Nepal Illustration & Overlay */
+.tp-footer-top {
+  position: relative;
+  background-position: center 25% !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  overflow: hidden;
+}
+
+.tp-footer-top.tp-linear-bg::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 45%, #000000 100%) !important;
+  border-radius: 20px 20px 0 0;
+  z-index: 1;
+}
+
+.tp-footer-top .container {
+  position: relative;
+  z-index: 2;
+}
+
+
