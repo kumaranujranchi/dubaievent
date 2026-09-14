@@ -14193,7 +14193,7 @@ body.tp-magic-cursor #magic-cursor {
 /* Footer Top Nepal Illustration & Overlay */
 .tp-footer-top {
   position: relative;
-  background-position: center 25% !important;
+  background-position: center top !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-color: #000000 !important;
