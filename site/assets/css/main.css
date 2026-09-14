@@ -14196,7 +14196,10 @@ body.tp-magic-cursor #magic-cursor {
   background-position: center 25% !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  background-color: #000000 !important;
+  margin-bottom: -2px !important;
   overflow: hidden;
+  border-bottom: none !important;
 }
 
 .tp-footer-top.tp-linear-bg::before {
@@ -14205,10 +14208,29 @@ body.tp-magic-cursor #magic-cursor {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 45%, #000000 100%) !important;
+  height: calc(100% + 4px) !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 45%, #000000 85%, #000000 100%) !important;
   border-radius: 20px 20px 0 0;
   z-index: 1;
+}
+
+.tp-footer-top::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 100%) !important;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tp-footer-main {
+  position: relative;
+  z-index: 2;
+  background-color: #000000 !important;
+  border-top: none !important;
 }
 
 .tp-footer-top .container {
