@@ -12,6 +12,177 @@
     <link rel="stylesheet" href="assets/css/spacing.css">
     <link rel="stylesheet" href="assets/css/odometer-min.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        /* Terms & Conditions GSAP Scroll Animated Experience */
+        .tp-terms-wrapper {
+            position: relative;
+            perspective: 1200px;
+        }
+        .tp-terms-item {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            padding: 38px 42px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+            transform-origin: center top;
+            will-change: transform, opacity;
+            overflow: hidden;
+        }
+        /* Left neon accent line indicator on active card */
+        .tp-terms-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--tp-secoundery-color);
+            opacity: 0;
+            transform: scaleY(0.2);
+            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tp-terms-item.tp-terms-active::before {
+            opacity: 1;
+            transform: scaleY(1);
+            box-shadow: 0 0 16px rgba(223, 237, 72, 0.9);
+        }
+        .tp-terms-item.tp-terms-active {
+            border-color: rgba(223, 237, 72, 0.55);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(223, 237, 72, 0.3);
+        }
+        .tp-terms-item:hover {
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.07);
+        }
+        /* Number badge */
+        .tp-terms-item .tp-terms-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--tp-secoundery-color);
+            color: #121315;
+            font-weight: 800;
+            font-size: 15px;
+            flex-shrink: 0;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+        }
+        .tp-terms-item.tp-terms-active .tp-terms-num {
+            transform: scale(1.08);
+            box-shadow: 0 0 0 6px rgba(223, 237, 72, 0.22), 0 6px 18px rgba(223, 237, 72, 0.4);
+        }
+        /* Item 12 dark contact card */
+        .tp-terms-item.tp-terms-item-contact {
+            background: #121315 !important;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        }
+        .tp-terms-item.tp-terms-item-contact.tp-terms-active {
+            border-color: rgba(223, 237, 72, 0.55) !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(223, 237, 72, 0.3) !important;
+        }
+        /* Floating Glassmorphism HUD Tracker */
+        .tp-terms-hud {
+            position: fixed;
+            bottom: 32px;
+            right: 35px;
+            z-index: 999;
+            background: rgba(18, 19, 21, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.38);
+            border-radius: 50px;
+            padding: 10px 22px 10px 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(25px);
+            pointer-events: none;
+        }
+        .tp-terms-hud.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .tp-terms-hud-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--tp-secoundery-color);
+            color: #121315;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .tp-terms-hud-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .tp-terms-hud-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .tp-terms-hud-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+            max-width: 220px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tp-terms-hud-progress {
+            width: 50px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.16);
+            border-radius: 3px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .tp-terms-hud-bar {
+            height: 100%;
+            width: 8%;
+            background: var(--tp-secoundery-color);
+            border-radius: 3px;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 8px rgba(223, 237, 72, 0.8);
+        }
+        @media (max-width: 767px) {
+            .tp-terms-item {
+                padding: 26px 22px;
+            }
+            .tp-terms-item div[style*="padding-left: 59px"] {
+                padding-left: 0 !important;
+                margin-top: 15px;
+            }
+            .tp-terms-hud {
+                bottom: 20px;
+                right: 15px;
+                left: 15px;
+                justify-content: space-between;
+                border-radius: 16px;
+            }
+            .tp-terms-hud-title {
+                max-width: 140px;
+            }
+        }
+    </style>
 </head>
 <body class="tp-magic-cursor">
     
@@ -194,9 +365,9 @@
                         <div class="tp-terms-wrapper">
 
                             <!-- 01 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-01">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">01</span>
+                                    <span class="tp-terms-num">01</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Event Registration</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -206,9 +377,9 @@
                             </div>
 
                             <!-- 02 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-02">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">02</span>
+                                    <span class="tp-terms-num">02</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Event Entry</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -218,9 +389,9 @@
                             </div>
 
                             <!-- 03 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-03">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">03</span>
+                                    <span class="tp-terms-num">03</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Event Schedule</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -230,9 +401,9 @@
                             </div>
 
                             <!-- 04 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-04">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">04</span>
+                                    <span class="tp-terms-num">04</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Special Guests</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -242,9 +413,9 @@
                             </div>
 
                             <!-- 05 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-05">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">05</span>
+                                    <span class="tp-terms-num">05</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Photography &amp; Videography</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -254,9 +425,9 @@
                             </div>
 
                             <!-- 06 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-06">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">06</span>
+                                    <span class="tp-terms-num">06</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Games, Contests &amp; Giveaways</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -266,9 +437,9 @@
                             </div>
 
                             <!-- 07 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-07">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">07</span>
+                                    <span class="tp-terms-num">07</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Property Information</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -278,9 +449,9 @@
                             </div>
 
                             <!-- 08 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-08">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">08</span>
+                                    <span class="tp-terms-num">08</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Personal Information</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -290,9 +461,9 @@
                             </div>
 
                             <!-- 09 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-09">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">09</span>
+                                    <span class="tp-terms-num">09</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Guest Conduct</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -302,9 +473,9 @@
                             </div>
 
                             <!-- 10 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-10">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">10</span>
+                                    <span class="tp-terms-num">10</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Safety &amp; Venue Rules</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -314,9 +485,9 @@
                             </div>
 
                             <!-- 11 -->
-                            <div class="tp-terms-item br-20 mb-30 tp_fade_anim" data-delay=".1" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); padding: 35px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                            <div class="tp-terms-item br-20 mb-30" id="clause-11">
                                 <div class="d-flex align-items-center mb-15" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">11</span>
+                                    <span class="tp-terms-num">11</span>
                                     <h3 class="margin-0" style="font-size: 22px; font-weight: 700; color: #121315;">Changes to the Terms</h3>
                                 </div>
                                 <div style="color: #4a4d53; font-size: 16px; line-height: 1.75; padding-left: 59px;">
@@ -325,9 +496,9 @@
                             </div>
 
                             <!-- 12 -->
-                            <div class="tp-terms-item br-20 mb-40 tp_fade_anim" data-delay=".1" style="background: #121315; color: #ffffff; padding: 45px 40px; border-radius: 20px;">
+                            <div class="tp-terms-item tp-terms-item-contact br-20 mb-40" id="clause-12" style="background: #121315; color: #ffffff; padding: 45px 40px; border-radius: 20px;">
                                 <div class="d-flex align-items-center mb-20" style="gap: 15px;">
-                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--tp-secoundery-color); color: #121315; font-weight: 800; font-size: 15px;">12</span>
+                                    <span class="tp-terms-num">12</span>
                                     <h3 class="margin-0 tp-text-white" style="font-size: 24px; font-weight: 700;">Contact</h3>
                                 </div>
                                 <div style="padding-left: 59px;">
@@ -401,8 +572,6 @@
                 </div>
             </div>
         </section>
-        <!-- terms-content-area,end  -->
-
         </main>
         <!-- main,end  -->
 
@@ -507,6 +676,26 @@
         </div>
     </div>
 
+    <!-- Floating Reading Progress HUD (outside smooth-wrapper for fixed viewport positioning) -->
+    <div class="tp-terms-hud" id="tpTermsHud">
+        <div class="tp-terms-hud-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+        </div>
+        <div class="tp-terms-hud-text">
+            <span class="tp-terms-hud-label">READING CLAUSE</span>
+            <span class="tp-terms-hud-title"><span id="tpHudNum">01</span> / 12 • <span id="tpHudTitle">Event Registration</span></span>
+        </div>
+        <div class="tp-terms-hud-progress">
+            <div class="tp-terms-hud-bar" id="tpHudBar"></div>
+        </div>
+    </div>
+
     <!-- JS here -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -526,5 +715,110 @@
     <script src="assets/js/cursor.js"></script>
     <script src="assets/js/jaralax.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- GSAP Scroll-Based Terms & Conditions Animation -->
+    <script>
+        $(document).ready(function () {
+            if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            var cards = gsap.utils.toArray(".tp-terms-item");
+            var hud = document.getElementById("tpTermsHud");
+            var hudNum = document.getElementById("tpHudNum");
+            var hudTitle = document.getElementById("tpHudTitle");
+            var hudBar = document.getElementById("tpHudBar");
+            var termsWrapper = document.querySelector(".tp-terms-wrapper");
+
+            if (!cards.length) return;
+
+            // Show Reading HUD when entering terms section, hide when leaving
+            if (hud && termsWrapper) {
+                ScrollTrigger.create({
+                    trigger: termsWrapper,
+                    start: "top 75%",
+                    end: "bottom 35%",
+                    onEnter: function () { hud.classList.add("is-visible"); },
+                    onLeave: function () { hud.classList.remove("is-visible"); },
+                    onEnterBack: function () { hud.classList.add("is-visible"); },
+                    onLeaveBack: function () { hud.classList.remove("is-visible"); }
+                });
+            }
+
+            // Scroll-scrubbed entrance & 3D depth glide for each clause card
+            cards.forEach(function (card, index) {
+                var num = card.querySelector(".tp-terms-num");
+                var titleEl = card.querySelector("h3");
+                var titleText = titleEl ? titleEl.textContent.trim() : ("Clause " + (index + 1));
+
+                // Dynamic 3D depth glide on scroll
+                gsap.fromTo(card, 
+                    { 
+                        y: 50, 
+                        opacity: 0.18, 
+                        scale: 0.96,
+                        rotateX: 4
+                    }, 
+                    {
+                        y: 0, 
+                        opacity: 1, 
+                        scale: 1,
+                        rotateX: 0,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 92%",
+                            end: "top 62%",
+                            scrub: 0.5
+                        }
+                    }
+                );
+
+                // Number badge pop & rotate scrub
+                if (num) {
+                    gsap.fromTo(num, 
+                        { scale: 0.72, rotation: -18 },
+                        {
+                            scale: 1,
+                            rotation: 0,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 90%",
+                                end: "top 65%",
+                                scrub: 0.4
+                            }
+                        }
+                    );
+                }
+
+                // Active focal trigger for highlighting current clause in view & updating HUD
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 55%",
+                    end: "bottom 45%",
+                    onEnter: function () {
+                        cards.forEach(function (c) { c.classList.remove("tp-terms-active"); });
+                        card.classList.add("tp-terms-active");
+                        if (hudNum) hudNum.textContent = String(index + 1).padStart(2, '0');
+                        if (hudTitle) hudTitle.textContent = titleText;
+                        if (hudBar) hudBar.style.width = Math.round(((index + 1) / cards.length) * 100) + "%";
+                    },
+                    onEnterBack: function () {
+                        cards.forEach(function (c) { c.classList.remove("tp-terms-active"); });
+                        card.classList.add("tp-terms-active");
+                        if (hudNum) hudNum.textContent = String(index + 1).padStart(2, '0');
+                        if (hudTitle) hudTitle.textContent = titleText;
+                        if (hudBar) hudBar.style.width = Math.round(((index + 1) / cards.length) * 100) + "%";
+                    }
+                });
+            });
+
+            // Refresh ScrollTrigger after slight delay to ensure alignment with ScrollSmoother
+            setTimeout(function () {
+                ScrollTrigger.refresh();
+            }, 300);
+        });
+    </script>
 </body>
 </html>
